@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile - ArtWorld</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-pink-50 text-gray-800">
+  <nav class="flex justify-center gap-12 py-4 bg-white shadow">
+    <a href="profile.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="user"></i> Your Profile</a>
+    <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
+    <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
+    <a href="artists.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="pen-tool"></i> Artists</a>
+    <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
+  </nav>
+  <main class="p-6">
+    <section class="max-w-xl mx-auto text-center bg-white shadow p-6 rounded-2xl">
+      <img src="https://i.pravatar.cc/150" class="mx-auto rounded-full w-32 mb-4" />
+      <h1 class="text-2xl font-bold">Alex Doe</h1>
+      <p class="text-gray-600 mb-4">Art Enthusiast & Collector</p>
+      <button class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Edit Profile</button>
+    </section>
+  </main>
+  <script>feather.replace();</script>
+</body>
+</html>

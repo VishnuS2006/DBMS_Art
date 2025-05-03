@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - ArtWorld</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .chat-popup {
+      display: none;
+    }
+    .chat-popup.show {
+      display: block;
+    }
+    .confetti {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      z-index: 0;
+      opacity: 0.8;
+      border-radius: 1px;
+      animation: fall 6s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(720deg); }
+    }
+  </style>
+</head>
+<body class="bg-pink-50 text-gray-800 overflow-x-hidden">
+
+  <!-- Confetti Background -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const colors = ["#ff007f", "#ffa500", "#00ffff", "#8000ff", "#ff1493"];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.top = `${Math.random() * 100}vh`;
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${3 + Math.random() * 3}s`;
+        confetti.style.width = confetti.style.height = `${4 + Math.random() * 4}px`;
+        document.body.appendChild(confetti);
+      }
+    });
+  </script>
+
+  <!-- Header Navigation -->
+  <header class="bg-white shadow sticky top-0 z-10">
+    <div class="flex items-center justify-between px-6 py-4">
+      <div class="text-3xl font-bold font-['Cinzel_Decorative'] text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-orange-400 to-pink-600 drop-shadow-md">
+        ArtWorld
+      </div>
+      <nav class="flex space-x-6 text-gray-700 font-semibold">
+        <a href="index.html" class="hover:text-pink-600 transition"><i class="fas fa-home mr-1"></i> Home</a>
+        <a href="artwork.html" class="hover:text-pink-600 transition"><i class="fas fa-images mr-1"></i> Artworks</a>
+        <a href="artist.html" class="hover:text-pink-600 transition"><i class="fas fa-paint-brush mr-1"></i> Artists</a>
+        <a href="events.html" class="hover:text-pink-600 transition"><i class="fas fa-calendar-alt mr-1"></i> Events</a>
+        <a href="login.html" class="hover:text-pink-600 transition"><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 relative z-10">
+    <section class="max-w-4xl mx-auto bg-white p-8 rounded shadow">
+      <h2 class="text-3xl font-bold mb-4 text-pink-600">About ArtWorld</h2>
+      <p class="mb-4 text-lg">ArtWorld is a curated platform showcasing the finest artworks and artists worldwide. We promote creativity and bring artists closer to art lovers through innovative digital experiences.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Our Vision</h3>
+          <p>To become the most inspiring and accessible online art gallery, fostering global appreciation for diverse artistic expressions.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Our Mission</h3>
+          <p>To empower artists, connect them with global audiences, and bring their stories to life through immersive experiences and technology.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="max-w-4xl mx-auto bg-white p-8 rounded shadow mt-8">
+      <h3 class="text-2xl font-bold text-pink-500 mb-4">Our Values</h3>
+      <ul class="list-disc list-inside space-y-2 text-gray-700">
+        <li>Creativity and Innovation</li>
+        <li>Diversity and Inclusion</li>
+        <li>Community and Collaboration</li>
+        <li>Transparency and Trust</li>
+        <li>Empowerment through Art</li>
+      </ul>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="max-w-6xl mx-auto bg-white p-8 rounded shadow mt-8">
+      <h3 class="text-2xl font-bold text-pink-500 mb-6 text-center">Meet the Team</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h4 class="font-semibold text-lg">John Smith</h4>
+          <p class="text-sm text-gray-600">Founder & Creative Director</p>
+        </div>
+        <div class="text-center">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Emily" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h4 class="font-semibold text-lg">Emily Carter</h4>
+          <p class="text-sm text-gray-600">Community Manager</p>
+        </div>
+        <div class="text-center">
+          <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Alex" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h4 class="font-semibold text-lg">Alex Kim</h4>
+          <p class="text-sm text-gray-600">Lead Developer</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chatbot Button -->
+  <button id="chatToggle" class="fixed bottom-6 right-6 bg-pink-500 hover:bg-pink-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-50">
+    <i class="fas fa-robot text-xl"></i>
+  </button>
+
+  <!-- Chatbot Box -->
+  <div id="chatPopup" class="chat-popup fixed bottom-20 right-6 w-80 bg-white rounded-xl shadow-xl border p-4 z-40">
+    <div class="flex justify-between items-center mb-2">
+      <h4 class="font-semibold text-pink-500">ArtBot - Assistant</h4>
+      <button onclick="toggleChat()" class="text-gray-500 hover:text-red-500"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="h-40 overflow-y-auto text-sm mb-2 p-2 border rounded bg-gray-50">
+      <p class="text-gray-600">Hello! How can I help you with ArtWorld today?</p>
+    </div>
+    <input type="text" placeholder="Type a message..." class="w-full p-2 border rounded text-sm" />
+  </div>
+
+  <!-- Message Popup Form -->
+  <div class="fixed bottom-6 left-6 z-50">
+    <button onclick="document.getElementById('messageModal').classList.toggle('hidden')" class="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-full shadow">
+      <i class="fas fa-envelope"></i> Message Us
+    </button>
+  </div>
+
+  <div id="messageModal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+      <div class="flex justify-between mb-4">
+        <h2 class="text-lg font-bold text-pink-500">Send Us a Message</h2>
+        <button onclick="document.getElementById('messageModal').classList.add('hidden')"><i class="fas fa-times text-gray-600 hover:text-red-500"></i></button>
+      </div>
+      <form>
+        <input type="text" placeholder="Your Name" class="w-full p-2 mb-3 border rounded" required />
+        <input type="email" placeholder="Your Email" class="w-full p-2 mb-3 border rounded" required />
+        <textarea placeholder="Your Message" class="w-full p-2 mb-3 border rounded" rows="4" required></textarea>
+        <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded w-full">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const toggleChat = () => {
+      document.getElementById('chatPopup').classList.toggle('show');
+    };
+    document.getElementById('chatToggle').addEventListener('click', toggleChat);
+  </script>
+
+  <footer class="bg-gray-800 text-white text-center py-4 mt-8 relative z-10">
+    <p>&copy; 2025 ArtWorld. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artworks - ArtWorld</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-pink-50 text-gray-800">
+  <nav class="flex justify-center gap-12 py-4 bg-white shadow">
+    <a href="profile.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="user"></i> Your Profile</a>
+    <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
+    <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
+    <a href="artists.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="pen-tool"></i> Artists</a>
+    <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
+  </nav>
+  <main class="p-6">
+    <section class="max-w-6xl mx-auto">
+      <div class="flex justify-between items-center mb-6">
+        <input type="text" placeholder="Search artworks..." class="p-2 border rounded w-1/2" />
+        <select class="p-2 border rounded">
+          <option>All</option>
+          <option>Paintings</option>
+          <option>Digital</option>
+          <option>Sculptures</option>
+        </select>
+      </div>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="shadow rounded overflow-hidden">
+          <img src="https://source.unsplash.com/400x300/?art" alt="Artwork" />
+          <div class="p-4">
+            <h4 class="font-bold">Mystic Dreams</h4>
+            <p class="text-sm text-gray-600">By Jane Smith</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>feather.replace();</script>
+</body>
+</html>

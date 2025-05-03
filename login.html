@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - ArtWorld</title>
+
+  <!-- Font Awesome & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #ff6a00, #ff416c, #ff4b2b);
+      color: #333;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px);
+      background-size: 80px 80px;
+      background-position: 0 0, 40px 40px;
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-family: 'Cinzel Decorative', cursive;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b, #ff6a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+      transition: transform 0.4s ease, text-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      text-shadow: 2px 2px 20px rgba(255, 72, 107, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s;
+    }
+
+    .nav-links a i {
+      margin-right: 8px;
+    }
+
+    .nav-links a:hover {
+      color: #ff416c;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .login-box {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .login-box h2 {
+      font-family: 'Cinzel Decorative', cursive;
+      color: #ff416c;
+      margin-bottom: 30px;
+      font-size: 32px;
+      text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      background: #f5f5f5;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #ff416c;
+      background-color: #ffe0e0;
+      outline: none;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: linear-gradient(to right, #ff416c, #ff6a00);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.4s, transform 0.4s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(to right, #ff6a00, #ff416c);
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+
+    .links a {
+      color: #ff416c;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .links a:hover {
+      color: #ff6a00;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Confetti animation */
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .login-box {
+        padding: 30px;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+<canvas class="confetti"></canvas>
+
+<header>
+  <div class="logo">ArtWorld</div>
+  <div class="nav-links">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="artwork.html"><i class="fas fa-image"></i> Artworks</a>
+    <a href="artist.html"><i class="fas fa-paint-brush"></i> Artists</a>
+    <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
+  </div>
+</header>
+
+<div class="login-container">
+  <div class="login-box">
+    <h2>Login to ArtWorld</h2>
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <input type="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+    <div class="links">
+      <a href="#">Forgot Password?</a>
+      <a href="createAcc.html">Create an Account</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 ArtWorld. All Rights Reserved | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+</footer>
+
+<script>
+  // Confetti animation script
+  const canvas = document.querySelector('.confetti');
+  const ctx = canvas.getContext('2d');
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  canvas.width = W;
+  canvas.height = H;
+  const maxParticles = 100;
+  let particles = [];
+
+  for (let i = 0; i < maxParticles; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 6 + 1,
+      d: Math.random() * maxParticles,
+      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngle: 0,
+      tiltAngleIncrement: Math.random() * 0.07 + 0.05
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p) => {
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+      ctx.stroke();
+    });
+    update();
+  }
+
+  function update() {
+    particles.forEach((p) => {
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += (Math.cos(p.d) + 1 + p.r / 2) / 2;
+      p.x += Math.sin(p.tiltAngle);
+
+      if (p.y > H) {
+        p.y = -10;
+        p.x = Math.random() * W;
+      }
+    });
+  }
+
+  (function animate() {
+    draw();
+    requestAnimationFrame(animate);
+  })();
+</script>
+
+</body>
+</html>
