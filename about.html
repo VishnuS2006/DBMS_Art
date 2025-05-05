@@ -31,24 +31,6 @@
 </head>
 <body class="bg-pink-50 text-gray-800 overflow-x-hidden">
 
-  <!-- Confetti Background -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const colors = ["#ff007f", "#ffa500", "#00ffff", "#8000ff", "#ff1493"];
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.top = `${Math.random() * 100}vh`;
-        confetti.style.left = `${Math.random() * 100}vw`;
-        confetti.style.animationDuration = `${3 + Math.random() * 3}s`;
-        confetti.style.width = confetti.style.height = `${4 + Math.random() * 4}px`;
-        document.body.appendChild(confetti);
-      }
-    });
-  </script>
-
-  <!-- Header Navigation -->
   <header class="bg-white shadow sticky top-0 z-10">
     <div class="flex items-center justify-between px-6 py-4">
       <div class="text-3xl font-bold font-['Cinzel_Decorative'] text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-orange-400 to-pink-600 drop-shadow-md">
@@ -134,7 +116,6 @@
     <input type="text" placeholder="Type a message..." class="w-full p-2 border rounded text-sm" />
   </div>
 
-  <!-- Message Popup Form -->
   <div class="fixed bottom-6 left-6 z-50">
     <button onclick="document.getElementById('messageModal').classList.toggle('hidden')" class="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-full shadow">
       <i class="fas fa-envelope"></i> Message Us
