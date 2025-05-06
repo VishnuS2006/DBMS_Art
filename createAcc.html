@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 
   <style>
-     * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(to right, #ff6a00, #ff416c, #ff4b2b);
@@ -182,16 +182,6 @@
       color: #fff;
     }
 
-    .confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -206,16 +196,12 @@
   </style>
 </head>
 <body>
-<canvas class="confetti"></canvas>
 
 <header>
   <div class="logo">ArtWorld</div>
   <div class="nav-links">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-    <a href="artwork.html"><i class="fas fa-image"></i> Artworks</a>
-    <a href="artist.html"><i class="fas fa-paint-brush"></i> Artists</a>
-    <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
   </div>
 </header>
 
@@ -235,6 +221,23 @@
       <div class="input-group">
         <input type="password" id="cpassword" name="confirm_password" placeholder="Confirm Password" required>
       </div>
+
+      <div class="input-group" style="display: flex; flex-direction: column; align-items: flex-start;">
+        <label style="font-weight: bold; color: #555; margin-bottom: 10px;">
+          Do you consider yourself an artist?
+        </label>
+        <div style="display: flex; gap: 20px;">
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" name="isArtist" value="yes" required>
+            yes
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" name="isArtist" value="no">
+            No
+          </label>
+        </div>
+      </div>
+
       <button class="btn" type="submit">Create Account</button>
     </form>
     <div class="links">
@@ -260,10 +263,14 @@
 
       if (!validateInputs()) return;
 
+      const artistValue = document.querySelector('input[name="isArtist"]:checked')?.value;
+      const isArtist = artistValue === "yes" ? 1 : 0;
+
       const formData = {
         name: username.value.trim(),
         email: email.value.trim(),
-        password: password.value.trim()
+        password: password.value.trim(),
+        isArtist: isArtist
       };
 
       try {
@@ -277,6 +284,7 @@
           localStorage.setItem("loggedInUser", formData.name);
           localStorage.setItem("loggedInEmail", formData.email);
           localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("isArtist", formData.isArtist);
 
           alert("Signup successful! Redirecting...");
           window.location.href = `index.html`;
@@ -319,46 +327,6 @@
 
       return true;
     }
-  });
-
-  
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.lineWidth = p.r;
-      ctx.strokeStyle = p.color;
-      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
-      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
-      ctx.stroke();
-    });
-    update();
-  }
-
-  function update() {
-    particles.forEach(p => {
-      p.tiltAngle += p.tiltAngleIncrement;
-      p.y += (Math.cos(p.d) + 1 + p.r / 2) / 2;
-      p.x += Math.sin(p.tiltAngle);
-
-      if (p.y > H) {
-        p.y = -10;
-        p.x = Math.random() * W;
-      }
-    });
-  }
-
-  (function animate() {
-    draw();
-    requestAnimationFrame(animate);
-  })();
-
-  window.addEventListener("resize", () => {
-    W = window.innerWidth;
-    H = window.innerHeight;
-    canvas.width = W;
-    canvas.height = H;
   });
 </script>
 

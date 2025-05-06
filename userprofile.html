@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - ArtWorld</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .logo {
+            font-size: 3rem;
+            font-family: 'Cinzel Decorative', cursive;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b, #ff6a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+            transition: transform 0.4s ease, text-shadow 0.4s ease;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-pink-50 text-gray-800">
+    <!-- Header with Logo and Navigation -->
+    <header class="bg-white shadow py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+            <div class="logo">ARTWORLD</div>
+            <nav class="flex gap-8 text-lg font-semibold">
+                <a href="index.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="home"></i> Home</a>
+                <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
+                <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
+                <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
+                <a href="profile.html" class="flex items-center gap-2 text-pink-600"><i data-feather="user"></i> Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="p-6">
+        <!-- View Mode -->
+        <div id="profileView" class="max-w-2xl mx-auto bg-white shadow rounded-2xl p-6 mb-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">My Profile</h1>
+                <button id="editButton" class="bg-pink-500 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-pink-600">
+                    <i data-feather="edit-2" class="w-4 h-4"></i>
+                    Edit Profile
+                </button>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-2">
+                        <img id="profileDisplayImage" src="profile.webp" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex-1 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Name</span>
+                            <p id="nameDisplay" class="text-gray-800">Sarah Johnson</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Email</span>
+                            <p id="emailDisplay" class="text-gray-800">sarah.johnson@example.com</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Location</span>
+                            <p id="locationDisplay" class="text-gray-800">New York, NY</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Date of Birth</span>
+                            <p id="dobDisplay" class="text-gray-800">15 May 1985</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Contact Number</span>
+                            <p id="contactDisplay" class="text-gray-800">+1 (212) 555-1234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Mode -->
+        <form id="profileForm" class="max-w-2xl mx-auto bg-white shadow rounded-2xl p-6 hidden">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Edit Profile</h1>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-32 h-32 rounded-full overflow-hidden mb-2">
+                        <img id="profileFormImage" src="profile.webp" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <button type="button" class="text-sm text-pink-600 hover:text-pink-700">Change Photo</button>
+                </div>
+                
+                <div class="flex-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-500 mb-1">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-500 mb-1">Location</label>
+                            <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="dob" class="block text-sm font-medium text-gray-500 mb-1">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="contact" class="block text-sm font-medium text-gray-500 mb-1">Contact Number</label>
+                            <input type="tel" id="contact" name="contact" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-4">
+                        <button type="button" id="cancelButton" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-center gap-2">
+                            <i data-feather="x" class="w-4 h-4"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 flex items-center gap-2">
+                            <i data-feather="save" class="w-4 h-4"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Profile data object
+        const profile = {
+            name: "Sarah Johnson",
+            email: "sarah.johnson@example.com",
+            location: "New York, NY",
+            dob: "1985-05-15",
+            contact: "+1 (212) 555-1234",
+            profileImage: "profile.webp"
+        };
+
+        // DOM elements
+        const editButton = document.getElementById('editButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const profileForm = document.getElementById('profileForm');
+        const profileView = document.getElementById('profileView');
+
+        // Form elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const locationInput = document.getElementById('location');
+        const dobInput = document.getElementById('dob');
+        const contactInput = document.getElementById('contact');
+        const profileFormImage = document.getElementById('profileFormImage');
+
+        // Display elements
+        const nameDisplay = document.getElementById('nameDisplay');
+        const emailDisplay = document.getElementById('emailDisplay');
+        const locationDisplay = document.getElementById('locationDisplay');
+        const dobDisplay = document.getElementById('dobDisplay');
+        const contactDisplay = document.getElementById('contactDisplay');
+        const profileDisplayImage = document.getElementById('profileDisplayImage');
+
+        // Initialize form with profile data
+        function populateForm() {
+            nameInput.value = profile.name;
+            emailInput.value = profile.email;
+            locationInput.value = profile.location;
+            dobInput.value = profile.dob;  // Format yyyy-mm-dd for date input
+            contactInput.value = profile.contact;
+            profileFormImage.src = profile.profileImage;
+        }
+
+        // Format date from yyyy-mm-dd to display format
+        function formatDate(dateString) {
+            if (!dateString) return "";
+            const date = new Date(dateString);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Update display with profile data
+        function updateDisplay() {
+            nameDisplay.textContent = profile.name;
+            emailDisplay.textContent = profile.email;
+            locationDisplay.textContent = profile.location;
+            dobDisplay.textContent = formatDate(profile.dob);
+            contactDisplay.textContent = profile.contact;
+            profileDisplayImage.src = profile.profileImage;
+        }
+
+        // Switch to edit mode
+        editButton.addEventListener('click', () => {
+            profileView.classList.add('hidden');
+            profileForm.classList.remove('hidden');
+            populateForm();
+            // Re-initialize feather icons for the newly displayed form
+            feather.replace();
+        });
+
+        // Cancel edit
+        cancelButton.addEventListener('click', () => {
+            profileForm.classList.add('hidden');
+            profileView.classList.remove('hidden');
+        });
+
+        // Handle form submission
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Update profile data
+            profile.name = nameInput.value;
+            profile.email = emailInput.value;
+            profile.location = locationInput.value;
+            profile.dob = dobInput.value;
+            profile.contact = contactInput.value;
+            
+            // Update display
+            updateDisplay();
+            
+            // Switch back to view mode
+            profileForm.classList.add('hidden');
+            profileView.classList.remove('hidden');
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>

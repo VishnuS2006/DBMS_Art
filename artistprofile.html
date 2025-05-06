@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile - ArtWorld</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .logo {
+            font-size: 3rem;
+            font-family: 'Cinzel Decorative', cursive;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b, #ff6a00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+            transition: transform 0.4s ease, text-shadow 0.4s ease;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-pink-50 text-gray-800">
+    <!-- Header with Logo and Navigation -->
+    <header class="bg-white shadow py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+            <div class="logo">ARTWORLD</div>
+            <nav class="flex gap-8 text-lg font-semibold">
+                <a href="index.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="home"></i> Home</a>
+                <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
+                <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
+                <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
+                <a href="profile.html" class="flex items-center gap-2 text-pink-600"><i data-feather="user"></i> Profile</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="p-6">
+        <!-- View Mode -->
+        <div id="profileView" class="max-w-4xl mx-auto bg-white shadow rounded-2xl p-6 mb-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Artist Profile</h1>
+                <button id="editButton" class="bg-pink-500 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-pink-600">
+                    <i data-feather="edit-2" class="w-4 h-4"></i>
+                    Edit Profile
+                </button>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-40 h-40 rounded-full overflow-hidden mb-2">
+                        <img id="profileDisplayImage" src="profile.webp" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <h2 id="nameDisplayBold" class="text-xl font-bold mt-2">Sarah Johnson</h2>
+                    <span id="artistTypeDisplay" class="text-pink-600 font-medium">Mixed Media Artist</span>
+                </div>
+                
+                <div class="flex-1 space-y-4">
+                    <div class="mb-4">
+                        <span class="text-sm font-medium text-gray-500">About Me</span>
+                        <p id="bioDisplay" class="text-gray-800 mt-1">
+                            Contemporary artist exploring the intersection of traditional painting techniques and digital media. 
+                            My work focuses on urban landscapes and human connection in the modern world. 
+                            Based in New York City, I've been exhibiting my art since 2010 across North America and Europe.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Email</span>
+                            <p id="emailDisplay" class="text-gray-800">sarah.johnson@example.com</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Location</span>
+                            <p id="locationDisplay" class="text-gray-800">New York, NY</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Website</span>
+                            <p id="websiteDisplay" class="text-gray-800">www.sarahjohnsonart.com</p>
+                        </div>
+                        
+                        <div>
+                            <span class="text-sm font-medium text-gray-500">Contact Number</span>
+                            <p id="contactDisplay" class="text-gray-800">+1 (212) 555-1234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Published Artworks Section -->
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">My Published Artworks</h2>
+                    <button id="publishArtButton" class="bg-pink-500 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-pink-600">
+                        <i data-feather="upload" class="w-4 h-4"></i>
+                        Publish New Artwork
+                    </button>
+                </div>
+                
+                <div id="artworksContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Sample Artwork 1 -->
+                    <div class="bg-gray-50 rounded-lg overflow-hidden shadow">
+                        <img src="/api/placeholder/400/300" alt="Urban Reflections" class="w-full h-48 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-semibold">Urban Reflections</h3>
+                            <p class="text-sm text-gray-600">Mixed Media, 2023</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Sample Artwork 2 -->
+                    <div class="bg-gray-50 rounded-lg overflow-hidden shadow">
+                        <img src="/api/placeholder/400/300" alt="Digital Dreams" class="w-full h-48 object-cover">
+                        <div class="p-3">
+                            <h3 class="font-semibold">Digital Dreams</h3>
+                            <p class="text-sm text-gray-600">Digital Art, 2022</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder for new artworks -->
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center h-64 bg-gray-50">
+                        <span class="text-gray-400">More artworks will appear here</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Mode -->
+        <form id="profileForm" class="max-w-4xl mx-auto bg-white shadow rounded-2xl p-6 hidden">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Edit Artist Profile</h1>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-40 h-40 rounded-full overflow-hidden mb-2">
+                        <img id="profileFormImage" src="profile.webp" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <button type="button" class="text-sm text-pink-600 hover:text-pink-700 mt-2">Change Photo</button>
+                </div>
+                
+                <div class="flex-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="md:col-span-2">
+                            <label for="name" class="block text-sm font-medium text-gray-500 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="artistType" class="block text-sm font-medium text-gray-500 mb-1">Artist Type</label>
+                            <input type="text" id="artistType" name="artistType" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="bio" class="block text-sm font-medium text-gray-500 mb-1">Bio</label>
+                            <textarea id="bio" name="bio" rows="4" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-500 mb-1">Location</label>
+                            <input type="text" id="location" name="location" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="website" class="block text-sm font-medium text-gray-500 mb-1">Website</label>
+                            <input type="url" id="website" name="website" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="contact" class="block text-sm font-medium text-gray-500 mb-1">Contact Number</label>
+                            <input type="tel" id="contact" name="contact" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-4">
+                        <button type="button" id="cancelButton" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-center gap-2">
+                            <i data-feather="x" class="w-4 h-4"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 flex items-center gap-2">
+                            <i data-feather="save" class="w-4 h-4"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Publish Artwork Modal -->
+        <div id="publishArtModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Publish New Artwork</h2>
+                    <button id="closeArtModal" class="text-gray-500 hover:text-gray-700">
+                        <i data-feather="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <form id="artworkForm">
+                    <div class="grid grid-cols-1 gap-4 mb-4">
+                        <div>
+                            <label for="artworkTitle" class="block text-sm font-medium text-gray-500 mb-1">Title</label>
+                            <input type="text" id="artworkTitle" name="artworkTitle" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="artworkMedium" class="block text-sm font-medium text-gray-500 mb-1">Medium</label>
+                            <input type="text" id="artworkMedium" name="artworkMedium" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="artworkYear" class="block text-sm font-medium text-gray-500 mb-1">Year</label>
+                            <input type="number" id="artworkYear" name="artworkYear" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500">
+                        </div>
+                        
+                        <div>
+                            <label for="artworkDescription" class="block text-sm font-medium text-gray-500 mb-1">Description</label>
+                            <textarea id="artworkDescription" name="artworkDescription" rows="3" class="w-full p-2 border border-gray-300 rounded focus:ring-pink-500 focus:border-pink-500"></textarea>
+                        </div>
+                        
+                        <div class="border-2 border-dashed border-gray-300 p-4 rounded-lg text-center">
+                            <div class="mb-2">
+                                <i data-feather="upload-cloud" class="w-8 h-8 mx-auto text-gray-400"></i>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Drag and drop your artwork image here</p>
+                            <p class="text-xs text-gray-400">or</p>
+                            <button type="button" class="mt-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Browse Files</button>
+                            <input type="file" id="artworkImage" name="artworkImage" class="hidden" accept="image/*">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-4">
+                        <button type="button" id="cancelArtPublish" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">Cancel</button>
+                        <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Publish Artwork</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Profile data object
+        const profile = {
+            name: "Sarah Johnson",
+            artistType: "Mixed Media Artist",
+            email: "sarah.johnson@example.com",
+            location: "New York, NY",
+            bio: "Contemporary artist exploring the intersection of traditional painting techniques and digital media. My work focuses on urban landscapes and human connection in the modern world. Based in New York City, I've been exhibiting my art since 2010 across North America and Europe.",
+            website: "www.sarahjohnsonart.com",
+            contact: "+1 (212) 555-1234",
+            profileImage: "profile.webp"
+        };
+
+        // Artworks array
+        let artworks = [
+            {
+                id: 1,
+                title: "Urban Reflections",
+                medium: "Mixed Media",
+                year: "2023",
+                description: "A study of city life through fragmented mirrors and urban textures.",
+                image: "/api/placeholder/400/300"
+            },
+            {
+                id: 2,
+                title: "Digital Dreams",
+                medium: "Digital Art",
+                year: "2022",
+                description: "Exploring the subconscious through digital manipulation and vibrant colors.",
+                image: "/api/placeholder/400/300"
+            }
+        ];
+
+        // DOM elements
+        const editButton = document.getElementById('editButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const profileForm = document.getElementById('profileForm');
+        const profileView = document.getElementById('profileView');
+        const publishArtButton = document.getElementById('publishArtButton');
+        const publishArtModal = document.getElementById('publishArtModal');
+        const closeArtModal = document.getElementById('closeArtModal');
+        const cancelArtPublish = document.getElementById('cancelArtPublish');
+        const artworkForm = document.getElementById('artworkForm');
+        const artworksContainer = document.getElementById('artworksContainer');
+
+        // Form elements
+        const nameInput = document.getElementById('name');
+        const artistTypeInput = document.getElementById('artistType');
+        const emailInput = document.getElementById('email');
+        const locationInput = document.getElementById('location');
+        const websiteInput = document.getElementById('website');
+        const bioInput = document.getElementById('bio');
+        const contactInput = document.getElementById('contact');
+        const profileFormImage = document.getElementById('profileFormImage');
+
+        // Display elements
+        const nameDisplay = document.getElementById('nameDisplayBold');
+        const artistTypeDisplay = document.getElementById('artistTypeDisplay');
+        const emailDisplay = document.getElementById('emailDisplay');
+        const locationDisplay = document.getElementById('locationDisplay');
+        const websiteDisplay = document.getElementById('websiteDisplay');
+        const bioDisplay = document.getElementById('bioDisplay');
+        const contactDisplay = document.getElementById('contactDisplay');
+        const profileDisplayImage = document.getElementById('profileDisplayImage');
+
+        // Initialize form with profile data
+        function populateForm() {
+            nameInput.value = profile.name;
+            artistTypeInput.value = profile.artistType;
+            emailInput.value = profile.email;
+            locationInput.value = profile.location;
+            websiteInput.value = profile.website;
+            bioInput.value = profile.bio;
+            contactInput.value = profile.contact;
+            profileFormImage.src = profile.profileImage;
+        }
+
+        // Update display with profile data
+        function updateDisplay() {
+            nameDisplay.textContent = profile.name;
+            artistTypeDisplay.textContent = profile.artistType;
+            emailDisplay.textContent = profile.email;
+            locationDisplay.textContent = profile.location;
+            websiteDisplay.textContent = profile.website;
+            bioDisplay.textContent = profile.bio;
+            contactDisplay.textContent = profile.contact;
+            profileDisplayImage.src = profile.profileImage;
+        }
+
+        // Render artworks
+        function renderArtworks() {
+            // Clear existing artworks first (excluding the placeholder)
+            const existingArtworks = artworksContainer.querySelectorAll('div:not(:last-child)');
+            existingArtworks.forEach(artwork => artwork.remove());
+            
+            // Add all artworks from the array
+            artworks.forEach(artwork => {
+                const artworkEl = document.createElement('div');
+                artworkEl.className = 'bg-gray-50 rounded-lg overflow-hidden shadow';
+                artworkEl.innerHTML = `
+                    <img src="${artwork.image}" alt="${artwork.title}" class="w-full h-48 object-cover">
+                    <div class="p-3">
+                        <h3 class="font-semibold">${artwork.title}</h3>
+                        <p class="text-sm text-gray-600">${artwork.medium}, ${artwork.year}</p>
+                    </div>
+                `;
+                
+                // Insert before the placeholder
+                artworksContainer.insertBefore(artworkEl, artworksContainer.lastElementChild);
+            });
+            
+            // Re-initialize feather icons
+            feather.replace();
+        }
+
+        // Switch to edit mode
+        editButton.addEventListener('click', () => {
+            profileView.classList.add('hidden');
+            profileForm.classList.remove('hidden');
+            populateForm();
+            // Re-initialize feather icons for the newly displayed form
+            feather.replace();
+        });
+
+        // Cancel edit
+        cancelButton.addEventListener('click', () => {
+            profileForm.classList.add('hidden');
+            profileView.classList.remove('hidden');
+        });
+
+        // Handle form submission
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Update profile data
+            profile.name = nameInput.value;
+            profile.artistType = artistTypeInput.value;
+            profile.email = emailInput.value;
+            profile.location = locationInput.value;
+            profile.website = websiteInput.value;
+            profile.bio = bioInput.value;
+            profile.contact = contactInput.value;
+            
+            // Update display
+            updateDisplay();
+            
+            // Switch back to view mode
+            profileForm.classList.add('hidden');
+            profileView.classList.remove('hidden');
+        });
+
+        // Open publish artwork modal
+        publishArtButton.addEventListener('click', () => {
+            publishArtModal.classList.remove('hidden');
+            // Re-initialize feather icons for the modal
+            feather.replace();
+        });
+
+        // Close publish artwork modal
+        function closeArtworkModal() {
+            publishArtModal.classList.add('hidden');
+            artworkForm.reset();
+        }
+
+        closeArtModal.addEventListener('click', closeArtworkModal);
+        cancelArtPublish.addEventListener('click', closeArtworkModal);
+
+        // Handle artwork form submission
+        artworkForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const newArtwork = {
+                id: artworks.length + 1,
+                title: document.getElementById('artworkTitle').value,
+                medium: document.getElementById('artworkMedium').value,
+                year: document.getElementById('artworkYear').value,
+                description: document.getElementById('artworkDescription').value,
+                image: "/api/placeholder/400/300" // Placeholder image for demo
+            };
+            
+            // Add to artworks array
+            artworks.push(newArtwork);
+            
+            // Update the display
+            renderArtworks();
+            
+            // Close the modal
+            closeArtworkModal();
+        });
+
+        // Connect file browser button to hidden file input
+        document.querySelector('button.mt-2.px-4.py-2.bg-gray-200').addEventListener('click', () => {
+            document.getElementById('artworkImage').click();
+        });
+
+        // Initialize display
+        updateDisplay();
+        renderArtworks();
+    </script>
+</body>
+</html>
