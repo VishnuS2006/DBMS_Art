@@ -1,34 +1,111 @@
-<!-- ============================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Artists - ArtWorld</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .logo {
+      font-size: 3rem;
+      font-family: 'Cinzel Decorative', cursive;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b, #ff6a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+      transition: transform 0.4s ease, text-shadow 0.4s ease;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body class="bg-pink-50 text-gray-800">
-  <nav class="flex justify-center gap-12 py-4 bg-white shadow">
-    <a href="profile.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="user"></i> Your Profile</a>
-    <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
-    <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
-    <a href="artists.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="pen-tool"></i> Artists</a>
-    <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
-  </nav>
+  <header class="bg-white shadow py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+      <div class="logo">ARTWORLD</div>
+      <nav class="flex gap-8 text-lg font-semibold">
+        <a href="index.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="home"></i> Home</a>
+        <a href="artworks.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="image"></i> Artworks</a>
+        <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
+        <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
+      </nav>
+    </div>
+  </header>
+
   <main class="p-6">
     <section class="max-w-5xl mx-auto">
+      <input 
+        type="text" 
+        placeholder="Search by name or style..." 
+        class="w-full p-2 border rounded mb-6" 
+        id="searchInput"
+      />
+
       <h2 class="text-3xl font-bold mb-6">Featured Artists</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div class="bg-white p-4 rounded shadow">
-          <img src="https://i.pravatar.cc/100?u=1" class="rounded-full w-20 mb-2" />
-          <h3 class="font-bold">Emma Wilson</h3>
-          <p class="text-sm text-gray-600">Abstract Painter</p>
-          <button class="text-pink-600 hover:underline mt-2">View Bio</button>
-        </div>
+      <div class="grid grid-cols-2 gap-6" id="artistGrid">
+        <!-- Artist cards will be dynamically inserted here -->
       </div>
     </section>
   </main>
-  <script>feather.replace();</script>
+
+  <script>
+    feather.replace();
+
+    const artists = [
+      {
+        id: 1,
+        name: "Emma Wilson",
+        role: "Abstract Painter",
+        avatar: "https://i.pravatar.cc/100?u=1"
+      },
+      {
+        id: 2,
+        name: "Liam Carter",
+        role: "Digital Illustrator",
+        avatar: "https://i.pravatar.cc/100?u=2"
+      },
+      {
+        id: 3,
+        name: "Sofia Brown",
+        role: "Sculptor",
+        avatar: "https://i.pravatar.cc/100?u=3"
+      },
+      {
+        id: 4,
+        name: "Noah Green",
+        role: "Watercolor Artist",
+        avatar: "https://i.pravatar.cc/100?u=4"
+      }
+    ];
+
+    function renderArtists(filter = "") {
+      const grid = document.getElementById("artistGrid");
+      grid.innerHTML = "";
+
+      artists
+        .filter(artist =>
+          artist.name.toLowerCase().includes(filter) ||
+          artist.role.toLowerCase().includes(filter)
+        )
+        .forEach(artist => {
+          grid.innerHTML += `
+            <div class="bg-white p-4 rounded shadow">
+              <img src="${artist.avatar}" class="rounded-full w-20 mb-2" />
+              <h3 class="font-bold">${artist.name}</h3>
+              <p class="text-sm text-gray-600">${artist.role}</p>
+              <button class="text-pink-600 hover:underline mt-2">View Bio</button>
+            </div>
+          `;
+        });
+    }
+
+    renderArtists();
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      renderArtists(e.target.value.toLowerCase());
+    });
+  </script>
 </body>
 </html>
