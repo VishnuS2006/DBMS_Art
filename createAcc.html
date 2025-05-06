@@ -8,9 +8,9 @@
   <!-- Font Awesome & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
-  
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(to right, #ff6a00, #ff416c, #ff4b2b);
@@ -222,24 +222,23 @@
 <div class="form-container">
   <div class="form-box">
     <h2>Create Your Account</h2>
-    <form action="/register" method="POST">
+    <form id="form">
       <div class="input-group">
-        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" id="username" name="name" placeholder="Full Name" required>
       </div>
       <div class="input-group">
-        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
       </div>
       <div class="input-group">
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
       </div>
       <div class="input-group">
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <input type="password" id="cpassword" name="confirm_password" placeholder="Confirm Password" required>
       </div>
-      <button class="btn" type="submit" >Create Account</button>
+      <button class="btn" type="submit">Create Account</button>
     </form>
     <div class="links">
-        <p >Already have an account ? <a href="login.html">Login</a></p>
-      
+      <p>Already have an account? <a href="login.html">Login</a></p>
     </div>
   </div>
 </div>
@@ -249,31 +248,84 @@
 </footer>
 
 <script>
-  const canvas = document.querySelector('.confetti');
-  const ctx = canvas.getContext('2d');
-  let W = window.innerWidth;
-  let H = window.innerHeight;
-  canvas.width = W;
-  canvas.height = H;
-  const maxParticles = 100;
-  let particles = [];
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#form");
+    const username = document.querySelector("#username");
+    const email = document.querySelector("#email");
+    const password = document.querySelector("#password");
+    const cpassword = document.querySelector("#cpassword");
 
-  for (let i = 0; i < maxParticles; i++) {
-    particles.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 6 + 1,
-      d: Math.random() * maxParticles,
-      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-      tilt: Math.floor(Math.random() * 10) - 10,
-      tiltAngle: 0,
-      tiltAngleIncrement: Math.random() * 0.07 + 0.05
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!validateInputs()) return;
+
+      const formData = {
+        name: username.value.trim(),
+        email: email.value.trim(),
+        password: password.value.trim()
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          localStorage.setItem("loggedInUser", formData.name);
+          localStorage.setItem("loggedInEmail", formData.email);
+          localStorage.setItem("isLoggedIn", "true");
+
+          alert("Signup successful! Redirecting...");
+          window.location.href = `index.html`;
+          form.reset();
+        } else {
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message}`);
+        }
+      } catch (error) {
+        alert(`Error submitting data: ${error.message}`);
+      }
     });
-  }
+
+    function validateInputs() {
+      const nameVal = username.value.trim();
+      const emailVal = email.value.trim();
+      const passVal = password.value.trim();
+      const cpassVal = cpassword.value.trim();
+
+      if (!nameVal || !emailVal || !passVal || !cpassVal) {
+        alert("Please fill in all fields.");
+        return false;
+      }
+
+      const emailPattern = /^\S+@\S+\.\S+$/;
+      if (!emailPattern.test(emailVal)) {
+        alert("Enter a valid email address.");
+        return false;
+      }
+
+      if (passVal.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return false;
+      }
+
+      if (passVal !== cpassVal) {
+        alert("Passwords do not match.");
+        return false;
+      }
+
+      return true;
+    }
+  });
+
+  
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    particles.forEach((p) => {
+    particles.forEach(p => {
       ctx.beginPath();
       ctx.lineWidth = p.r;
       ctx.strokeStyle = p.color;
@@ -285,10 +337,11 @@
   }
 
   function update() {
-    particles.forEach((p) => {
+    particles.forEach(p => {
       p.tiltAngle += p.tiltAngleIncrement;
       p.y += (Math.cos(p.d) + 1 + p.r / 2) / 2;
       p.x += Math.sin(p.tiltAngle);
+
       if (p.y > H) {
         p.y = -10;
         p.x = Math.random() * W;
@@ -300,6 +353,13 @@
     draw();
     requestAnimationFrame(animate);
   })();
+
+  window.addEventListener("resize", () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+  });
 </script>
 
 </body>

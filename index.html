@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ArtWorld - Discover Creative Wonders</title>
 
-  <!-- Font Awesome & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
@@ -286,27 +285,7 @@
   });
 </script>
 <script>
-  const canvas = document.querySelector('.confetti');
-  const ctx = canvas.getContext('2d');
-  let W = window.innerWidth;
-  let H = window.innerHeight;
-  canvas.width = W;
-  canvas.height = H;
-  const maxParticles = 100;
-  let particles = [];
 
-  for (let i = 0; i < maxParticles; i++) {
-    particles.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 6 + 1,
-      d: Math.random() * maxParticles,
-      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-      tilt: Math.floor(Math.random() * 10) - 10,
-      tiltAngle: 0,
-      tiltAngleIncrement: Math.random() * 0.07 + 0.05
-    });
-  }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
