@@ -223,9 +223,6 @@
   <div class="nav-links">
     <a href="index.html"><i class="fas fa-home"></i> Home</a>
     <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-    <a href="artwork.html"><i class="fas fa-image"></i> Artworks</a>
-    <a href="artist.html"><i class="fas fa-paint-brush"></i> Artists</a>
-    <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
   </div>
 </header>
 
@@ -310,6 +307,7 @@
     .then(response => response.json())
     .then(data => {
       if (data.message === "Login successful") {
+        localStorage.setItem("userEmail", data.user.email);
         window.location.href = 'index.html';
       } else {
         document.getElementById('error-message').innerText = data.message || "Login failed!";

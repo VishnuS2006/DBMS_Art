@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ArtWorld - Discover Creative Wonders</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #ff6a00, #ff416c, #ff4b2b);
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+      height: 100%;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fff 1px, transparent 1px), radial-gradient(#fff 1px, transparent 1px);
+      background-size: 80px 80px;
+      background-position: 0 0, 40px 40px;
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-family: 'Cinzel Decorative', cursive;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b, #ff6a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      text-shadow: 2px 2px 10px rgba(255, 72, 107, 0.3);
+      transition: transform 0.4s ease, text-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      text-shadow: 2px 2px 20px rgba(255, 72, 107, 0.5);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      color: #ff6a00;
+      transform: scale(1.1);
+      text-shadow: 0 0 8px rgba(255, 72, 107, 0.8);
+    }
+
+    nav a i {
+      margin-right: 5px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: linear-gradient(to right, #ff416c, #ff6a00);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background 0.4s, transform 0.4s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(to right, #ff6a00, #ff416c);
+    }
+
+    .hero {
+      padding: 120px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 20px auto;
+      font-size: 1.3rem;
+    }
+
+    .gallery, .about {
+      padding: 80px 40px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .gallery h2, .about h2 {
+      color: #ff6a00;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .grid img {
+      width: 50%;
+      border-radius: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .swiper-slide {
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer a {
+      color: #ccc;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      nav { flex-direction: column; }
+      nav a { margin: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+<canvas class="confetti"></canvas>
+
+<header>
+  <div class="logo">ArtWorld</div>
+  <nav>
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="before.html"><i class="fas fa-images"></i> Artworks</a>
+    <a href="before.html"><i class="fas fa-paint-brush"></i> Artists</a>
+    <a href="before.html"><i class="fas fa-calendar-alt"></i> Events</a>
+    <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Discover Artistic Wonders</h1>
+  <p>Explore a curated collection of stunning artworks that showcase the beauty of creativity in its purest form.</p>
+</section>
+
+<section class="gallery">
+  <h2>Trending Artworks</h2>
+  <div class="grid">
+    <div>
+      <img src="eye.png" alt="Eye image">
+      <h3>“Eye”</h3>
+      <p>Style: Abstract</p>
+    </div>
+    <div>
+      <img src="img 1.jpg" alt="Urban Light">
+      <h3>“Urban Light”</h3>
+      <p>Style: Modern</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <h2>Latest Highlights</h2>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <h4>Echoes of Time</h4>
+        <p>Date: Mar 15, 2025<br><a href="#">View Details</a></p>
+      </div>
+      <div class="swiper-slide">
+        <h4>Dream in Blue</h4>
+        <p>Date: Apr 01, 2025<br><a href="#">View Details</a></p>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<section class="about">
+  <h2>Our Vision</h2>
+  <p>ArtWorld blends technology and creativity to redefine how people connect with art. We make digital galleries immersive, inclusive, and inspiring for artists and enthusiasts alike.</p>
+</section>
+
+<section class="about">
+  <h2>Subscribe for Updates</h2>
+  <form>
+    <input type="email" placeholder="Enter your email" required style="padding:10px; width:300px; border-radius:8px; border:1px solid #ccc;">
+    <button class="btn" type="submit">Subscribe</button>
+  </form>
+</section>
+
+<footer>
+  <p>Contact us at: support@artworld.com</p>
+  <div style="margin:10px 0;">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+  </div>
+  <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+  <p>&copy; 2025 ArtWorld. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+<script>
+
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+      ctx.stroke();
+    });
+    update();
+  }
+
+  function update() {
+    particles.forEach((p, i) => {
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += (Math.cos(p.d) + 1 + p.r / 2) / 2;
+      p.x += Math.sin(p.tiltAngle);
+
+      if (p.y > H) {
+        p.y = -10;
+        p.x = Math.random() * W;
+      }
+    });
+  }
+
+  (function animate() {
+    draw();
+    requestAnimationFrame(animate);
+  })();
+</script>
+
+</body>
+</html>
