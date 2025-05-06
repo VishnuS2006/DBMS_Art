@@ -8,6 +8,7 @@
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body class="bg-pink-50 text-gray-800">
+  <!-- Navigation -->
   <nav class="flex justify-center gap-12 py-4 bg-white shadow">
     <a href="profile.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="user"></i> Your Profile</a>
     <a href="about.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="info"></i> About</a>
@@ -15,18 +16,58 @@
     <a href="artists.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="pen-tool"></i> Artists</a>
     <a href="events.html" class="flex items-center gap-2 hover:text-pink-600"><i data-feather="calendar"></i> Events</a>
   </nav>
+
+  <!-- Main Content -->
   <main class="p-6">
-    <section class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-6">Upcoming Events</h2>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded shadow hover:bg-pink-50 transition">
-          <h4 class="text-lg font-bold">Virtual Art Expo</h4>
-          <p class="text-sm text-gray-600">May 25, 2025</p>
-          <p class="mt-2 text-sm">Join us for an immersive virtual experience with global artists.</p>
-        </div>
+    <section class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold mb-10 text-center">Upcoming Events</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Virtual Art Expo -->
+        <a href="event-details.html?event=virtual-art-expo" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Virtual Art Expo</h4>
+          <p class="text-sm text-gray-600 mb-2">May 25, 2025</p>
+          <p class="text-sm">Join us for an immersive virtual experience with global artists.</p>
+        </a>
+
+        <!-- Other events follow the same pattern as above -->
+        <a href="event-details1.html?event=street-art-festival" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Street Art Festival</h4>
+          <p class="text-sm text-gray-600 mb-2">June 10, 2025</p>
+          <p class="text-sm">Discover live street performances and graffiti showcases in downtown LA.</p>
+        </a>
+
+        <a href="event-details.html?event=modern-sculptures-summit" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Modern Sculptures Summit</h4>
+          <p class="text-sm text-gray-600 mb-2">July 5, 2025</p>
+          <p class="text-sm">Explore contemporary sculpture trends with keynote artists and panels.</p>
+        </a>
+
+        <a href="event-details.html?event=childrens-art-workshop" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Children's Art Workshop</h4>
+          <p class="text-sm text-gray-600 mb-2">August 12, 2025</p>
+          <p class="text-sm">A creative, fun-filled workshop to inspire young budding artists.</p>
+        </a>
+
+        <a href="event-details.html?event=night-at-the-gallery" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Night at the Gallery</h4>
+          <p class="text-sm text-gray-600 mb-2">September 20, 2025</p>
+          <p class="text-sm">An evening event with live jazz, wine tasting, and exclusive art unveilings.</p>
+        </a>
+
+        <a href="event-details.html?event=digital-art-conference" class="event-card bg-white p-6 rounded-xl shadow hover:bg-pink-50 transition text-left cursor-pointer">
+          <h4 class="text-xl font-semibold mb-1">Digital Art Conference</h4>
+          <p class="text-sm text-gray-600 mb-2">October 8, 2025</p>
+          <p class="text-sm">Meet digital creators and explore the future of AI-generated art.</p>
+        </a>
+
       </div>
     </section>
   </main>
-  <script>feather.replace();</script>
+
+  <!-- JavaScript -->
+  <script>
+    feather.replace();
+  </script>
 </body>
 </html>

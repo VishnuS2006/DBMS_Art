@@ -52,31 +52,46 @@
 
   <script>
     feather.replace();
+    const anonymousImg = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
+
+
 
     const artists = [
       {
         id: 1,
         name: "Emma Wilson",
         role: "Abstract Painter",
-        avatar: "https://i.pravatar.cc/100?u=1"
+        avatar: anonymousImg
       },
       {
         id: 2,
         name: "Liam Carter",
         role: "Digital Illustrator",
-        avatar: "https://i.pravatar.cc/100?u=2"
+        avatar: anonymousImg
       },
       {
         id: 3,
         name: "Sofia Brown",
         role: "Sculptor",
-        avatar: "https://i.pravatar.cc/100?u=3"
+        avatar: anonymousImg
       },
       {
         id: 4,
         name: "Noah Green",
         role: "Watercolor Artist",
-        avatar: "https://i.pravatar.cc/100?u=4"
+        avatar: anonymousImg
+      },
+      {
+        id: 5,
+        name: "Ava Johnson",
+        role: "Portrait Artist",
+        avatar: anonymousImg
+      },
+      {
+        id: 6,
+        name: "Ethan Lee",
+        role: "Street Muralist",
+        avatar: anonymousImg
       }
     ];
 
@@ -92,7 +107,7 @@
         .forEach(artist => {
           grid.innerHTML += `
             <div class="bg-white p-4 rounded shadow">
-              <img src="${artist.avatar}" class="rounded-full w-20 mb-2" />
+              <img src="${artist.avatar}" class="rounded-full w-20 mb-2" alt="Anonymous" />
               <h3 class="font-bold">${artist.name}</h3>
               <p class="text-sm text-gray-600">${artist.role}</p>
               <button class="text-pink-600 hover:underline mt-2">View Bio</button>
